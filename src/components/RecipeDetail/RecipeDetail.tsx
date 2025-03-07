@@ -1,19 +1,22 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../redax/store";
-import { useParams } from 'react-router-dom'; 
-import { fetchRecipeById } from '../../redax/recipe/operations';
-import { selectRecipe } from '../../redax/recipe/selectors'; 
+import { useParams } from "react-router-dom";
+import { fetchRecipeById } from "../../redax/recipe/operations";
+import { selectRecipe } from "../../redax/recipe/selectors";
 
-import CSS from './RecipeDetail.module.css';
+import CSS from "./RecipeDetail.module.css";
 
 export default function RecipeDetail() {
   const dispatch = useDispatch<AppDispatch>();
-  const { id } = useParams(); 
+  const { id } = useParams();
   const recipeState = useSelector(selectRecipe);
 
-
-  const { recipe, status, error } = recipeState || { recipe: null, status: 'idle', error: null };
+  const { recipe, status, error } = recipeState || {
+    recipe: null,
+    status: "idle",
+    error: null,
+  };
 
   useEffect(() => {
     if (id) {
@@ -21,11 +24,11 @@ export default function RecipeDetail() {
     }
   }, [dispatch, id]);
 
-  if (status === 'loading') {
+  if (status === "loading") {
     return <div>Loading...</div>;
   }
 
-  if (status === 'failed') {
+  if (status === "failed") {
     return <div>Error: {error}</div>;
   }
 
@@ -44,9 +47,15 @@ export default function RecipeDetail() {
 
   return (
     <div className={CSS.wrapper}>
-      <img src={recipe.strMealThumb} alt={recipe.strMeal} className={CSS.image} />
+      <img
+        src={recipe.strMealThumb}
+        alt={recipe.strMeal}
+        className={CSS.image}
+      />
       <h2 className={CSS.title}>{recipe.strMeal}</h2>
-      <p className={CSS.category}>{recipe.strCategory} - {recipe.strArea}</p>
+      <p className={CSS.category}>
+        {recipe.strCategory} - {recipe.strArea}
+      </p>
       <div className={CSS.instructions}>
         <h3>Instructions:</h3>
         <p>{recipe.strInstructions}</p>

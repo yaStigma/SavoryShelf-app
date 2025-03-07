@@ -2,20 +2,18 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redax/store";
 import { fetchRecipe } from "../../redax/recipe/operations";
-import CSS from "./SearchBar.module.css"
+import CSS from "./SearchBar.module.css";
 export default function SearchBar() {
-    const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
   const dispatch = useDispatch<AppDispatch>();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
   };
 
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchTerm.trim() !== "") {
-
       dispatch(fetchRecipe({ search: searchTerm }));
     }
   };
@@ -27,7 +25,6 @@ export default function SearchBar() {
         type="text"
         value={searchTerm}
         onChange={handleChange}
-
         className={CSS.input}
       />
       <button type="submit" className={CSS.btn}>
@@ -35,5 +32,4 @@ export default function SearchBar() {
       </button>
     </form>
   );
-
-};
+}

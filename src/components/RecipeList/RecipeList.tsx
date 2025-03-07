@@ -1,25 +1,24 @@
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../redax/store";
-import {fetchRecipe} from "../../redax/recipe/operations"
-import { selectRecipeState } from "../../redax/recipe/selectors"
+import { fetchRecipe } from "../../redax/recipe/operations";
+import { selectRecipeState } from "../../redax/recipe/selectors";
 
-import CSS from "./RecipeList.module.css"
-import RecipeCard from '../RecipeCard/RecipeCard';
+import CSS from "./RecipeList.module.css";
+import RecipeCard from "../RecipeCard/RecipeCard";
 export default function RecipeList() {
-    const dispatch = useDispatch<AppDispatch>();
-    const { meals, status } = useSelector(selectRecipeState);
+  const dispatch = useDispatch<AppDispatch>();
+  const { meals, status } = useSelector(selectRecipeState);
 
   useEffect(() => {
-    dispatch(fetchRecipe({ category: '', search: ''}));
+    dispatch(fetchRecipe({ category: "", search: "" }));
   }, [dispatch]);
   console.log("Fetched meals in RecipeList:", meals);
-  if (status === 'loading') {
+  if (status === "loading") {
     return <div>Loading...</div>;
   }
 
-
-  if (status === 'failed') {
+  if (status === "failed") {
     return <div>Something went wrong!</div>;
   }
 
@@ -37,5 +36,5 @@ export default function RecipeList() {
         )}
       </ul>
     </div>
-    )
-};
+  );
+}

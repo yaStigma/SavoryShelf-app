@@ -38,10 +38,8 @@ export const fetchCategories = createAsyncThunk(
   "recipe/fetchCategories",
   async () => {
     try {
-      const response = await axios.get(
-        "/list.php?c=list"
-      );
-      return response.data.meals; 
+      const response = await axios.get("/list.php?c=list");
+      return response.data.meals;
     } catch (error) {
       console.error("Error fetching categories:", error);
       throw error;
@@ -50,13 +48,13 @@ export const fetchCategories = createAsyncThunk(
 );
 
 export const fetchRecipeById = createAsyncThunk(
-  'recipe/fetchById',
+  "recipe/fetchById",
   async (id: string) => {
     try {
       const { data } = await axios.get(`/lookup.php?i=${id}`);
-      return data.meals[0]; 
+      return data.meals[0];
     } catch (error) {
-      console.error('Error fetching recipe by ID:', error);
+      console.error("Error fetching recipe by ID:", error);
       throw error;
     }
   }

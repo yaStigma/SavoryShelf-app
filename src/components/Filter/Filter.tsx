@@ -4,7 +4,7 @@ import { AppDispatch } from "../../redax/store";
 import { fetchCategories, fetchRecipe } from "../../redax/recipe/operations";
 import { selectCategories } from "../../redax/recipe/selectors";
 
-import CSS from "./Filter.module.css"; 
+import CSS from "./Filter.module.css";
 
 export default function Filter() {
   const dispatch = useDispatch<AppDispatch>();
@@ -15,19 +15,16 @@ export default function Filter() {
   }, [dispatch]);
 
   const handleCategoryChange = (category: string) => {
-
     dispatch(fetchRecipe({ category }));
   };
 
   return (
-    <div className={CSS.filterContainer}> 
-      <label htmlFor="categorySelect" > 
-        Select a Category:
-      </label>
-      <select 
+    <div className={CSS.filterContainer}>
+      <label htmlFor="categorySelect">Select a Category:</label>
+      <select
         id="categorySelect"
-        onChange={(e) => handleCategoryChange(e.target.value)} 
-        className={CSS.select} 
+        onChange={(e) => handleCategoryChange(e.target.value)}
+        className={CSS.select}
       >
         <option value="">Choose a category</option>
         {categories.map((category) => (

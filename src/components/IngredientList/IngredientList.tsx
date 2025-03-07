@@ -1,6 +1,4 @@
-import CSS from "./IngredientList.module.css"
+import CSS from "./IngredientList.module.css";
 export default function IngredientList() {
-    return (
-        <div className={CSS.wrapperIngredient}></div>
-    )
-};
+  return <div className={CSS.wrapperIngredient}></div>;
+}

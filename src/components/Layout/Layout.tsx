@@ -1,7 +1,7 @@
 import { Suspense } from "react";
-import { Outlet } from "react-router"; 
+import { Outlet } from "react-router";
 
-import CSS from "./Layout.module.css"
+import CSS from "./Layout.module.css";
 import Logo from "../Logo/Logo";
 import Header from "../Header/Header";
 import Dashboard from "../Dashboard/Dashboard";
