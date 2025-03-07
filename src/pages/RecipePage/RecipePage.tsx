@@ -1,4 +1,6 @@
+
 import CSS from "./RecipePage.module.css"
+
 export default function RecipePage() {
     return (
         <div className={CSS.wrapper}>
