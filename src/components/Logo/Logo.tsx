@@ -4,7 +4,7 @@ export default function Logo() {
   return (
     <div className={CSS.wrapper}>
       <Link to="/">
-        <img src="/public/logo.webp" alt="logo image" className={CSS.logo} />
+        <img src="/logo.webp" alt="logo image" className={CSS.logo} />
       </Link>
     </div>
   );
