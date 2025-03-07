@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { fetchRecipe } from "./operations"; 
-
+import {fetchCategories} from "./operations";
 interface Meal {
     idMeal: string;
     strMeal: string;
@@ -56,14 +56,18 @@ interface Meal {
     strCreativeCommonsConfirmed: string;
     dateModified: string;
   }
-
+  interface Category {
+    strCategory: string;
+  }
   interface RecipeState {
-    meals: Meal[]; // Замінили any[] на Meal[]
+    meals: Meal[]; 
+    categories: Category[];
     status: 'idle' | 'loading' | 'succeeded' | 'failed';
     error: string | null;
   }
   const initialState: RecipeState = {
     meals: [],
+    categories: [],
     status: 'idle',
     error: null,
   };
@@ -71,11 +75,11 @@ const recipeSlice = createSlice({
   name: 'recipe',
   initialState,
   reducers: {
-    // Ви можете додати свої додаткові редюсери, якщо потрібно
+
   },
   extraReducers: (builder) => {
     builder
-      // Створюємо редюсер для успішного виконання запиту
+
       .addCase(fetchRecipe.pending, (state) => {
         state.status = 'loading';
       })
@@ -84,9 +88,21 @@ const recipeSlice = createSlice({
         state.meals = action.payload;
         state.error = null;
       })
-      // Обробка помилки при запиті
+
       .addCase(fetchRecipe.rejected, (state, action) => {
         state.status = 'failed';
+        state.error = action.payload as string;
+      })
+
+      .addCase(fetchCategories.pending, (state) => {
+        state.status = "loading";
+      })
+      .addCase(fetchCategories.fulfilled, (state, action: PayloadAction<Category[]>) => {
+        state.status = "succeeded";
+        state.categories = action.payload;
+      })
+      .addCase(fetchCategories.rejected, (state, action) => {
+        state.status = "failed";
         state.error = action.payload as string;
       });
   },

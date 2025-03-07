@@ -34,6 +34,21 @@ export const fetchRecipe = createAsyncThunk(
   }
 );
 
+export const fetchCategories = createAsyncThunk(
+  "recipe/fetchCategories",
+  async () => {
+    try {
+      const response = await axios.get(
+        "https://www.themealdb.com/api/json/v1/1/list.php?c=list"
+      );
+      return response.data.meals; // Повертаємо список категорій
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+      throw error;
+    }
+  }
+);
+
 // export const fetchCamperID = createAsyncThunk('/campers/fetchID', async (id, thunkAPI) => {
 //   try {
 //     const { data } = await axios.get(`/campers/${id}`);
